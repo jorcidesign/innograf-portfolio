@@ -1,0 +1,10 @@
+/* Forzamos el color de fondo claro global para esta página */
+.p-projects {
+    min-height: 60vh;
+}
+
+/* Hack para asegurar que el layout tenga fondo claro en esta vista */
+:host,
+.t-main-layout {
+    background-color: var(--color-background-light) !important;
+}

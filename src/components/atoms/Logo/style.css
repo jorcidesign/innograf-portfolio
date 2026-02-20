@@ -1,0 +1,143 @@
+/* --- Contenedor Principal --- */
+.a-logo {
+    display: block;
+    width: 40px;
+    /* Asegúrate que tenga un tamaño visible */
+    height: auto;
+    cursor: pointer;
+    color: #fff;
+    /* Color por defecto (blanco) */
+    /* Quitamos el transition aquí para que no pelee con el SVG */
+}
+
+.a-logo svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    /* Permite que el punto salga si flota mucho */
+}
+
+/* --- Lógica Dark Mode --- */
+/* Invertimos el color usando CSS variables o filter, manteniendo tu lógica */
+.a-logo--dark {
+    color: #000;
+    /* Opción A: Cambiar color directo (mejor práctica) */
+    /* filter: invert(1); <--- Opción B: Si prefieres invertir como tenías antes */
+}
+
+/* --- ANIMACIÓN --- */
+
+/* Clase base para las partes animables */
+.logo-part {
+    /* El truco mágico para SVGs complejos: */
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Efecto rebote suave */
+}
+
+/* 1. Animación del Punto (DOT) */
+.a-logo:hover #anim-dot-wrapper {
+    /* Mueve hacia arriba y escala */
+    transform: translateY(-20px) scale(1.2);
+    /* Opcional: Cambia de color al hover */
+    /* fill: #ff0000; */
+}
+
+/* 2. Animación del Cuerpo (BODY) */
+.a-logo:hover #anim-body-wrapper {
+    /* Mueve ligeramente hacia abajo */
+    transform: translateY(5px);
+    opacity: 0.8;
+}
+
+/* =========================================
+   COREOGRAFÍA DE ENTRADA (MOTION GRAPHICS)
+   ========================================= */
+
+/* Base para todas las piezas individuales */
+.logo-shape {
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+    /* Empiezan invisibles */
+    /* Usamos un Easing "Expo Out" súper fluido */
+    animation: logoEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 1. Triángulo Izquierdo: Viene de ARRIBA */
+.logo-t1 {
+    transform: translateY(-40px);
+    animation-delay: 0.1s;
+    /* Arranca primero */
+}
+
+/* 2. Triángulo Derecho: Viene de ABAJO */
+.logo-t2 {
+    transform: translateY(40px);
+    animation-delay: 0.2s;
+}
+
+/* 3. Paralelogramo Central: Viene de ABAJO */
+.logo-para {
+    transform: translateY(40px) scale(0.9);
+    /* Ligeramente más pequeño */
+    animation-delay: 0.3s;
+}
+
+/* 4. Círculo: Viene de ARRIBA */
+.logo-dot-shape {
+    transform: translateY(-40px) scale(0);
+    /* Nace desde cero */
+    animation-delay: 0.45s;
+    /* Entra al final como el "toque maestro" */
+}
+
+/* EL KEYFRAME QUE LOS LLEVA A SU POSICIÓN ORIGINAL */
+@keyframes logoEntrance {
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================
+   ANIMACIÓN DE SALIDA (OPCIONAL)
+   ========================================= */
+/* Si alguna vez quieres que el logo se desarme antes de cambiar de página,
+   solo debes añadirle la clase 'is-leaving' a la etiqueta <a> por JS */
+
+.a-logo.is-leaving .logo-shape {
+    animation: logoExit 0.6s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+.a-logo.is-leaving .logo-t1 {
+    animation-delay: 0.2s;
+}
+
+.a-logo.is-leaving .logo-t2 {
+    animation-delay: 0.1s;
+}
+
+.a-logo.is-leaving .logo-para {
+    animation-delay: 0.05s;
+}
+
+.a-logo.is-leaving .logo-dot-shape {
+    animation-delay: 0s;
+}
+
+@keyframes logoExit {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        /* Se van hacia afuera expandiéndose */
+        transform: translateY(20px) scale(0.8);
+    }
+}

@@ -1,0 +1,87 @@
+/* --- CONTENEDOR PRINCIPAL --- */
+.m-service-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* Espacio entre imagen y texto */
+    width: 100%;
+    /* Efecto sutil al hacer hover en toda la tarjeta (opcional) */
+    transition: transform 0.3s ease;
+}
+
+/* --- WRAPPER DE LA IMAGEN --- */
+.m-service-card__thumb-wrapper {
+    width: 100%;
+    /* Sombra suave para levantar la imagen del fondo */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* --- CONTENIDO TEXTUAL --- */
+.m-service-card__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centrado horizontal */
+    text-align: center;
+    padding: 0 1rem;
+}
+
+/* 1. Categoría (Estilo "Diseño Gráfico y Branding") */
+.m-service-card__category {
+    font-family: var(--font-family-headings, serif);
+    /* O usa 'Times New Roman', serif para toque clásico */
+    font-style: italic;
+    font-size: 1rem;
+    color: #888;
+    /* Gris suave */
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+/* 2. Título (Estilo "IDENTIDAD VISUAL") */
+.m-service-card__title {
+    font-family: var(--font-family-headings, sans-serif);
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    /* Casi negro */
+    margin: 0.5rem 0 1rem 0;
+    line-height: 1.1;
+}
+
+/* 3. Divisor Decorativo (Pequeña línea roja) */
+.m-service-card__divider {
+    width: 40px;
+    height: 2px;
+    background-color: var(--color-primary, #DD2025);
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+}
+
+/* 4. Descripción */
+.m-service-card__desc {
+    font-family: var(--font-family-body, sans-serif);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #555;
+    max-width: 45ch;
+    /* Limita el ancho para lectura cómoda */
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .m-service-card {
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+        /* Separación entre tarjetas en mobile */
+    }
+
+    .m-service-card__title {
+        font-size: 1.75rem;
+    }
+
+    .m-service-card__desc {
+        font-size: 1rem;
+    }
+}

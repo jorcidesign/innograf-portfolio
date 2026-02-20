@@ -1,0 +1,46 @@
+/* --- EL HEADER ESTÁTICO --- */
+.o-top-header {
+    position: absolute;
+    /* O absolute, para que se quede arriba en el documento */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 990;
+    /* Un poco menos que el menú lateral que tendrá 1000 */
+    padding: 1.5rem 0;
+    /* Mismo padding que solía tener tu Navbar */
+    pointer-events: none;
+    /* TRUCO: Deja pasar los clics... */
+}
+
+.o-top-header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ... pero reactivamos los clics SOLO en los elementos interactivos */
+.o-top-header__logo,
+.o-top-header__actions {
+    pointer-events: auto;
+}
+
+/* --- LA ILUSIÓN ÓPTICA --- */
+.o-top-header__actions {
+    display: flex;
+    align-items: center;
+
+    /* AQUÍ ESTÁ EL SECRETO:
+       La hamburguesa mide 48px de ancho. Le sumamos 20px de espacio (gap).
+       Total: 68px. Empujamos este contenedor a la izquierda para dejarle el hueco.
+    */
+    margin-right: 68px;
+}
+
+/* En mobile podríamos reducir ese margen o esconder la palabra "VOLVER" */
+@media (max-width: 768px) {
+    .o-top-header__actions {
+        margin-right: 56px;
+        /* Hamburguesa un poco más pegada en mobile */
+    }
+}

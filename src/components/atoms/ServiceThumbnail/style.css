@@ -1,0 +1,103 @@
+/* --- CONTENEDOR PRINCIPAL --- */
+.a-service-thumb {
+    position: relative;
+    width: 100%;
+    /* Un aspect-ratio panorámico y elegante (16:9) */
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 0;
+    background-color: #252525;
+    border-radius: 4px;
+
+    /* Fix para safari mask overflow */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+}
+
+/* --- IMAGEN --- */
+.a-service-thumb__image-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.a-service-thumb__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Transición suave para el zoom */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* --- OVERLAY & HOVER --- */
+.a-service-thumb__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Inicialmente: Gradiente muy suave para asegurar que el texto blanco se lea */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 100%);
+
+    /* Transición de color al hacer hover */
+    transition: background-color 0.4s ease;
+}
+
+/* --- TEXTO CENTRAL --- */
+.a-service-thumb__label {
+    font-family: var(--font-family-headings, serif);
+    /* Tamaño dinámico que se adapta al móvil */
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: #ffffff;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+    padding: 1rem;
+
+    /* Sombras iniciales para lectura sin hover */
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+
+    /* Animación inicial */
+    transform: translateY(5px);
+    transition: transform 0.4s ease, text-shadow 0.4s ease;
+}
+
+/* =========================================
+   EFECTOS HOVER (DESKTOP)
+   ========================================= */
+
+/* 1. Fondo Rojo Corporativo */
+.a-service-thumb:hover .a-service-thumb__overlay {
+    background-color: rgba(221, 32, 37, 0.85);
+    /* #DD2025 al 85% */
+}
+
+/* 2. Zoom de la imagen */
+.a-service-thumb:hover .a-service-thumb__image {
+    transform: scale(1.08);
+}
+
+/* 3. Ajustes del texto */
+.a-service-thumb:hover .a-service-thumb__label {
+    transform: translateY(0);
+    /* Sube suavemente */
+    text-shadow: none;
+    /* Quitamos la sombra porque el rojo ya es sólido */
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .a-service-thumb {
+        /* En mobile, podemos hacerlo un poco menos alargado (opcional) */
+        aspect-ratio: 4 / 3;
+    }
+
+    .a-service-thumb__label {
+        font-size: 1.6rem;
+    }
+}

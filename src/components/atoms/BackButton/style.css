@@ -1,0 +1,47 @@
+.a-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-family-body, sans-serif);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+
+.a-back-btn__icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.a-back-btn__text {
+    /* Opcional: Si en mobile solo quieres el icono, puedes ocultar el texto con media queries */
+    transition: opacity 0.3s ease;
+}
+
+/* --- TEMAS DE COLOR --- */
+.a-back-btn--light {
+    color: #ffffff;
+}
+
+.a-back-btn--dark {
+    color: #1a1a1a;
+}
+
+/* --- INTERACCIÓN (HOVER) --- */
+.a-back-btn:hover {
+    color: var(--color-primary, #DD2025);
+    /* Se pinta de tu rojo corporativo */
+}
+
+.a-back-btn:hover .a-back-btn__icon {
+    /* La flechita se mueve un poco hacia atrás (izquierda) simulando la acción */
+    transform: translateX(-5px);
+}

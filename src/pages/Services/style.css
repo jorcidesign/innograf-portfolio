@@ -1,0 +1,8 @@
+/* src/pages/Services/style.css */
+
+#layout-content {
+    /* Coincide con el background del ServicesGrid (#fbfbfb) */
+    background-color: var(--color-background-light, #fbfbfb);
+    min-height: 100vh;
+    /* Asegura que cubra la pantalla */
+}

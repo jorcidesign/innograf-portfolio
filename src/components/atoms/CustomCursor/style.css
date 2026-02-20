@@ -1,0 +1,51 @@
+/* --- EL CÍRCULO SEGUIDOR --- */
+.a-custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    /* Lo hacemos más grande */
+    width: 60px;
+    height: 60px;
+
+    /* Borde blanco un poco suave */
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+
+    /* Centramos restando la mitad de la altura y anchura (30px) */
+    margin-top: -30px;
+    margin-left: -30px;
+
+    /* TRUCO: Deja hacer clic a través de él para que no bloquee tu web */
+    pointer-events: none;
+    z-index: 10000;
+
+    /* Sigue invirtiendo el color si pasa por una zona blanca */
+    mix-blend-mode: difference;
+
+    /* Transiciones SOLO para tamaño y opacidad, NUNCA para transform */
+    transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        margin 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        opacity 0.3s ease;
+
+    will-change: transform;
+}
+
+/* --- ESTADO HOVER EN ENLACES (Se encoge y desaparece) --- */
+.a-custom-cursor.is-hidden {
+    /* Puedes elegir que desaparezca del todo, o que se vuelva un puntito: */
+    width: 10px;
+    height: 10px;
+    margin-top: -5px;
+    margin-left: -5px;
+    opacity: 0;
+    /* Lo ponemos invisible para que el mouse actúe solo */
+}
+
+/* Ocultarlo en móviles/tablets para no estorbar el touch */
+@media (pointer: coarse) {
+    .a-custom-cursor {
+        display: none !important;
+    }
+}

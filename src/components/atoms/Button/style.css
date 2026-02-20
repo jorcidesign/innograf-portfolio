@@ -1,0 +1,96 @@
+/* --- BASE --- */
+.a-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    /* Ajustable según diseño */
+    font-family: var(--font-family-headings);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    /* Reserva espacio para borde */
+    min-width: 200px;
+    /* Tamaño mínimo aparente en tus diseños */
+    text-align: center;
+}
+
+/* --- COLORES BASE (SOLID) --- */
+
+/* Primary (Rojo) */
+.a-btn--solid.a-btn--primary {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+.a-btn--solid.a-btn--primary:hover {
+    background-color: #fff;
+    color: var(--color-primary);
+    border-color: #fff;
+    /* Opcional: borde para mantener tamaño visual */
+}
+
+/* Light (Blanco - Como en el banner rojo) */
+.a-btn--solid.a-btn--light {
+    background-color: #fff;
+    color: var(--color-primary);
+    /* Texto rojo sobre fondo blanco */
+}
+
+.a-btn--solid.a-btn--light:hover {
+    background-color: transparent;
+    color: #fff;
+    border-color: #fff;
+}
+
+/* Dark (Negro/Gris) */
+.a-btn--solid.a-btn--dark {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.a-btn--solid.a-btn--dark:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+/* --- OUTLINE (Bordes) --- */
+
+/* Outline Light (Borde blanco sobre fondo rojo/oscuro) */
+.a-btn--outline.a-btn--light {
+    background-color: transparent;
+    border-color: #fff;
+    color: #fff;
+}
+
+.a-btn--outline.a-btn--light:hover {
+    background-color: #fff;
+    color: var(--color-text-main);
+    /* O rojo var(--color-primary) */
+}
+
+/* Outline Dark (Borde negro sobre fondo claro) */
+.a-btn--outline.a-btn--dark {
+    background-color: transparent;
+    border-color: #000;
+    color: #000;
+}
+
+.a-btn--outline.a-btn--dark:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* --- VARIANTES RESPONSIVE --- */
+@media (max-width: 768px) {
+    .a-btn {
+        width: 100%;
+        /* En móvil suelen ocupar todo el ancho */
+        padding: 0.8rem 1rem;
+    }
+}

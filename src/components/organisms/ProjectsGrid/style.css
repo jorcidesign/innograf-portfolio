@@ -1,0 +1,65 @@
+/* --- CONTENEDOR PRINCIPAL --- */
+.o-projects-grid {
+    padding: 8rem 0 6rem 0;
+    /* Buen aire arriba para separar del navbar */
+    background-color: var(--color-background-light, #fbfbfb);
+    min-height: 100vh;
+}
+
+/* --- CABECERA --- */
+.o-projects-grid__header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.o-projects-grid__subtitle {
+    display: block;
+    font-family: var(--font-family-body);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: #888;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.o-projects-grid__title {
+    font-family: var(--font-family-headings);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 2rem;
+    line-height: 1;
+}
+
+.o-projects-grid__divider {
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-primary, #DD2025);
+    margin: 0 auto;
+}
+
+/* --- LA GRILLA RESPONSIVA --- */
+.o-projects-grid__list {
+    display: grid;
+    /* 1. MOBILE FIRST: 2 Columnas (como pediste) */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    /* Espacio entre tarjetas */
+}
+
+/* 2. TABLET: 3 Columnas */
+@media (min-width: 768px) {
+    .o-projects-grid__list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* 3. DESKTOP: 4 Columnas */
+@media (min-width: 1024px) {
+    .o-projects-grid__list {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2.5rem;
+    }
+}

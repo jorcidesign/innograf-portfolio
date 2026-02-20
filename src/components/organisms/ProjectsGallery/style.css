@@ -1,0 +1,93 @@
+/* --- CONTENEDOR PRINCIPAL --- */
+.o-gallery {
+    padding: 5rem 0;
+    /* Padding vertical general */
+    background-color: var(--color-background-light, #f9f9f9);
+    color: #252525;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- CABECERA --- */
+.o-gallery__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.o-gallery__subtitle {
+    display: block;
+    font-family: var(--font-family-body);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: #999;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.o-gallery__title {
+    font-family: var(--font-family-headings);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1;
+    text-transform: uppercase;
+    color: #1a1a1a;
+}
+
+/* --- GRID DE PROYECTOS --- */
+.o-gallery__grid {
+    display: grid;
+    /* CORRECCIÓN MOBILE: Siempre 2 columnas minímimo */
+    grid-template-columns: repeat(2, 1fr);
+
+    /* Gaps elegantes */
+    gap: 12px;
+
+    /* --- AQUÍ ESTABA EL ESPACIO GRANDE (MOBILE) --- */
+    /* Lo bajamos de 4rem a 2rem */
+    margin-bottom: 2rem;
+
+    align-items: start;
+    will-change: transform;
+}
+
+/* --- RESPONSIVE & PARALLAX CSS SETUP --- */
+
+/* Desktop: 3 Columnas */
+@media (min-width: 1024px) {
+    .o-gallery__grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+
+        /* --- AQUÍ ESTABA EL ESPACIO GRANDE (DESKTOP) --- */
+        /* Lo bajamos de 6rem a 3rem */
+        margin-bottom: 3rem;
+    }
+
+    /* DESKTOP PARALLAX SETUP:
+       Empujamos la columna del medio hacia abajo.
+       El JS la subirá al hacer scroll.
+    */
+    .o-gallery__grid>*:nth-child(3n + 2) {
+        margin-top: 80px;
+    }
+}
+
+/* Mobile/Tablet: 2 Columnas */
+@media (max-width: 1023px) {
+
+    /* MOBILE PARALLAX SETUP:
+       Empujamos la columna derecha.
+    */
+    .o-gallery__grid>*:nth-child(2n) {
+        margin-top: 40px;
+    }
+}
+
+/* --- FOOTER (BOTÓN) --- */
+.o-gallery__footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}

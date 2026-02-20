@@ -1,0 +1,116 @@
+.o-footer {
+    background-color: #1a1a1a;
+    /* Gris casi negro */
+    color: #ffffff;
+    padding: 4rem 0 2rem 0;
+    font-family: var(--font-family-body);
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- GRID PRINCIPAL --- */
+.o-footer__grid {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1fr;
+    /* Mobile: 1 columna */
+    margin-bottom: 4rem;
+}
+
+/* Logo */
+.o-footer__logo {
+    width: 120px;
+    height: auto;
+    /* Invertir color si el logo es negro, o asegúrate de usar logo-blanco.svg */
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+
+/* Títulos de columnas */
+.o-footer__title {
+    font-family: var(--font-family-headings);
+    font-size: 1rem;
+    color: #888;
+    /* Gris suave para los títulos */
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+/* Listas y Textos */
+.o-footer__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.o-footer__link,
+.o-footer__text,
+.o-footer__address {
+    color: #fff;
+    font-style: normal;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.o-footer__address div {
+    margin-bottom: 0.4rem;
+}
+
+/* Hover effects */
+.o-footer__link:hover {
+    opacity: 1;
+    color: var(--color-primary);
+    /* Rojo al hover */
+    padding-left: 5px;
+    /* Pequeño movimiento */
+}
+
+/* --- BARRA INFERIOR --- */
+.o-footer__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.o-footer__copyright {
+    opacity: 0.5;
+    font-size: 0.85rem;
+}
+
+.o-footer__legal-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.o-footer__legal-link {
+    color: #fff;
+    opacity: 0.5;
+    font-size: 0.85rem;
+    transition: opacity 0.3s ease;
+}
+
+.o-footer__legal-link:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* --- RESPONSIVE (Desktop) --- */
+@media (min-width: 1024px) {
+    .o-footer__grid {
+        /* Desktop: 4 columnas (Logo más ancho + 3 columnas iguales) */
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .o-footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}

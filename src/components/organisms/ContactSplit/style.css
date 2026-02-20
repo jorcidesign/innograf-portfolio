@@ -1,0 +1,155 @@
+/* --- CONTENEDOR PRINCIPAL (GRID 50/50) --- */
+.o-contact-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Mobile first: 1 columna */
+    min-height: 100vh;
+    /* Ocupa toda la pantalla */
+    width: 100%;
+}
+
+/* --- COLUMNA IZQUIERDA (INFO) --- */
+.o-contact-split__info {
+    background-color: var(--color-background-light, #f9f9f9);
+    padding: 7rem 2rem 4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 1;
+    /* En mobile, la info va primero */
+}
+
+.o-contact-split__content {
+    max-width: 500px;
+    width: 100%;
+}
+
+.o-contact-split__subtitle {
+    display: block;
+    font-family: var(--font-family-body);
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: #888;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.o-contact-split__title {
+    font-family: var(--font-family-headings);
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 2rem;
+}
+
+.o-contact-split__divider {
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-primary, #DD2025);
+    margin-bottom: 2rem;
+}
+
+.o-contact-split__desc {
+    font-family: var(--font-family-body);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 3rem;
+}
+
+/* --- COLUMNA DERECHA (MAPA) --- */
+.o-contact-split__map-wrapper {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    /* Altura en mobile */
+    overflow: hidden;
+    order: 2;
+}
+
+/* 1. EL IFRAME (Grisáceo) */
+.o-contact-split__map {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    /* Truco: Escala de grises para quitar los colores de Google */
+    filter: grayscale(100%) contrast(1.2);
+    display: block;
+}
+
+/* 2. EL OVERLAY (Tinte Rojo) */
+.o-contact-split__map-overlay {
+    position: absolute;
+    inset: 0;
+    /* Cubre todo el mapa */
+    background-color: var(--color-primary, #DD2025);
+    /* Tu color rojo */
+
+    /* LA MAGIA: Multiplica el rojo sobre el gris. 
+       Lo blanco se vuelve rojo, lo negro se queda oscuro. */
+    mix-blend-mode: multiply;
+
+    pointer-events: none;
+    /* Permite hacer click/drag en el mapa debajo */
+    opacity: 0.8;
+    /* Ajusta esto si quieres el rojo más o menos intenso */
+}
+
+/* 3. TARJETA FLOTANTE (Blanca) */
+.o-contact-split__card {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    background: #fff;
+    padding: 2.5rem;
+    max-width: 350px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    /* Encima del mapa y el tinte */
+}
+
+.o-contact-split__card-title {
+    font-family: var(--font-family-headings);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.o-contact-split__card-text {
+    font-family: var(--font-family-body);
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.o-contact-split__card-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #eee;
+    margin: 1.5rem 0;
+}
+
+/* --- DESKTOP (Grid 2 columnas) --- */
+@media (min-width: 1024px) {
+    .o-contact-split {
+        grid-template-columns: 1fr 1fr;
+        height: 100vh;
+        /* Forzamos altura completa solo en desktop */
+        overflow: hidden;
+        /* Evita scroll si el contenido cabe */
+    }
+
+    .o-contact-split__map-wrapper {
+        height: 100%;
+        /* Ocupa todo el alto */
+    }
+
+    .o-contact-split__info {
+        padding: 6rem;
+        /* Más aire a los lados */
+    }
+}

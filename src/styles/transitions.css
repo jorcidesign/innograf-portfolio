@@ -1,0 +1,121 @@
+/* Container que flota sobre todo */
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    /* ¡Encima de todo! */
+    pointer-events: none;
+    /* Permite clicks debajo si está invisible */
+    display: flex;
+    flex-direction: column;
+    /* Paneles apilados o columnas, haremos columnas para este efecto */
+}
+
+/* Los paneles individuales */
+.transition-panel {
+    width: 100%;
+    height: 100%;
+    /* Ocupan todo el alto */
+    transform: translateY(100%);
+    /* Empiezan escondidos abajo */
+    transition: transform 0.8s cubic-bezier(0.83, 0, 0.17, 1);
+    /* Easing "Quart" para suavidad extrema */
+    will-change: transform;
+    /* Optimización GPU */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Colores y Orden (Z-Index para que se superpongan bien) */
+.transition-panel:nth-child(1) {
+    background-color: #F0A91E;
+    /* Amarillo (Fondo) */
+    z-index: 10;
+}
+
+.transition-panel:nth-child(2) {
+    background-color: #ffffff;
+    /* Blanco (Medio) */
+    z-index: 20;
+}
+
+.transition-panel:nth-child(3) {
+    background-color: #DD2025;
+    /* Rojo (Frente - Tu color primario) */
+    z-index: 30;
+}
+
+/* --- ESTADO ACTIVO (CUBRIENDO PANTALLA) --- */
+.transition-overlay.is-active .transition-panel {
+    transform: translateY(0);
+    /* Suben a cubrir */
+}
+
+/* STAGGERING (Retrasos para efecto cascada al subir) */
+/* El rojo sube primero, luego blanco, luego amarillo */
+.transition-overlay.is-active .transition-panel:nth-child(3) {
+    transition-delay: 0s;
+}
+
+.transition-overlay.is-active .transition-panel:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.transition-overlay.is-active .transition-panel:nth-child(1) {
+    transition-delay: 0.2s;
+}
+
+/* STAGGERING AL BAJAR (Retrasos inversos) */
+/* El rojo baja primero para revelar rápido */
+.transition-overlay:not(.is-active) .transition-panel:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.transition-overlay:not(.is-active) .transition-panel:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.transition-overlay:not(.is-active) .transition-panel:nth-child(1) {
+    transition-delay: 0s;
+}
+
+/* --- STAGGERING AL SUBIR (COVER) --- */
+/* Lógica: Los de atrás suben primero para que se vean antes de ser tapados */
+
+/* 1. Amarillo (Fondo) arranca YA */
+.transition-overlay.is-active .transition-panel:nth-child(1) {
+    transition-delay: 0s;
+}
+
+/* 2. Blanco (Medio) espera un poquito */
+.transition-overlay.is-active .transition-panel:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+/* 3. Rojo (Frente) espera al final para tapar todo */
+.transition-overlay.is-active .transition-panel:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+
+/* --- STAGGERING AL BAJAR (REVEAL) --- */
+/* Lógica: El de arriba (Rojo) debe irse primero para dejar ver a los de abajo */
+
+/* 1. Rojo se va YA */
+.transition-overlay:not(.is-active) .transition-panel:nth-child(3) {
+    transition-delay: 0s;
+}
+
+/* 2. Blanco espera */
+.transition-overlay:not(.is-active) .transition-panel:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+/* 3. Amarillo se va al final */
+.transition-overlay:not(.is-active) .transition-panel:nth-child(1) {
+    transition-delay: 0.2s;
+}

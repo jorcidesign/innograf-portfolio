@@ -1,0 +1,6 @@
+/* src/pages/About/style.css */
+
+/* Ajustes específicos para la página de Nosotros si fueran necesarios */
+#layout-content {
+    background-color: var(--color-background-light, #f9f9f9);
+}

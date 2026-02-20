@@ -1,0 +1,31 @@
+.o-cta {
+    background-color: var(--color-primary);
+    /* Rojo Innograf */
+    padding: 8rem 0;
+    /* Buen espacio vertical */
+    text-align: center;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.o-cta__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    /* Espacio entre título y botón */
+}
+
+.o-cta__title {
+    font-family: var(--font-family-headings);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    /* Grande y responsivo */
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+    white-space: pre-line;
+    /* ¡Clave para respetar el salto de línea! */
+    margin: 0;
+}

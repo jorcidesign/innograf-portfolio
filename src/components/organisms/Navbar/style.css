@@ -1,0 +1,111 @@
+/* Header Fijo Transparente */
+.o-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    /* Por encima del Hero */
+    padding: 1rem 0;
+    transition: background-color 0.3s ease;
+}
+
+.o-navbar__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1002;
+    /* El logo y el botón deben estar encima del overlay */
+}
+
+.o-navbar__logo img {
+    height: 40px;
+    /* Ajusta según tu svg */
+    width: auto;
+    display: block;
+}
+
+/* El Panel Deslizante (Menu) */
+.o-navbar__overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #1a1a1a;
+    /* Gris muy oscuro casi negro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Centrado en mobile, izquierda en desktop según diseño */
+
+    /* Animación Slide */
+    transform: translateX(100%);
+    /* Oculto a la derecha */
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1000;
+}
+
+.o-navbar__overlay--open {
+    transform: translateX(0);
+    /* Visible */
+}
+
+/* Lista de Links */
+.o-navbar__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    padding: 0 2rem;
+    /* Padding lateral */
+    max-width: 600px;
+}
+
+.o-navbar__link {
+    font-family: var(--font-family-headings);
+    font-size: var(--font-size-h3);
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.o-navbar__link:hover {
+    color: var(--color-primary);
+    /* Rojo al hover */
+    padding-left: 10px;
+    /* Pequeño desplazamiento a la derecha */
+}
+
+.o-navbar__arrow {
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.o-navbar__link:hover .o-navbar__arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Utility Class (Agregar en main.css o dejar aquí si prefieres encapsular) */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+    .o-navbar__overlay {
+        width: 50%;
+        /* En desktop ocupa la mitad derecha */
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}

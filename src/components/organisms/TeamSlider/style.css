@@ -1,0 +1,128 @@
+/* --- CONTENEDOR PRINCIPAL --- */
+.o-team-slider {
+    padding: 4rem 0 8rem 0;
+    /* Buen espacio abajo */
+    background-color: var(--color-background-light, #f9f9f9);
+    overflow: hidden;
+}
+
+/* --- CABECERA (Título + Flechas) --- */
+.o-team-slider__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    /* Alineados abajo */
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.o-team-slider__title {
+    font-family: var(--font-family-headings);
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1;
+}
+
+/* --- CONTROLES (Flechas Minimalistas) --- */
+.o-team-slider__controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.o-team-slider__arrow {
+    background: transparent;
+    border: 1px solid #ccc;
+    color: #1a1a1a;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.o-team-slider__arrow:hover {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+}
+
+/* --- TRACK (EL CARRUSEL MÁGICO) --- */
+.o-team-slider__track {
+    display: flex;
+    gap: 30px;
+    /* Espacio entre tarjetas */
+
+    /* PROPIEDADES SCROLL SNAP */
+    overflow-x: auto;
+    /* Permite scroll horizontal */
+    scroll-snap-type: x mandatory;
+    /* Fuerza el snap */
+    scroll-behavior: smooth;
+
+    /* Ocultar Scrollbar (Chrome, Safari, Opera) */
+    -webkit-overflow-scrolling: touch;
+    /* Suavidad en iOS */
+}
+
+.o-team-slider__track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Ocultar Scrollbar (Firefox, IE, Edge) */
+.o-team-slider__track {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* --- ITEMS DEL SLIDER --- */
+.o-team-slider__item {
+    /* IMPORTANTE: Evita que se encojan */
+    flex: 0 0 auto;
+
+    /* PUNTO DE SNAP: Aquí se detendrá el scroll */
+    scroll-snap-align: start;
+
+    /* ANCHO RESPONSIVO */
+    /* Desktop: 3 columnas (33% aprox menos el gap) */
+    width: calc(33.333% - 20px);
+}
+
+/* --- MEDIA QUERIES --- */
+
+/* Tablet: 2 columnas */
+@media (max-width: 1024px) {
+    .o-team-slider__item {
+        width: calc(50% - 15px);
+    }
+}
+
+/* Mobile: 1 columna (con un poco de la siguiente visible "peek") */
+@media (max-width: 768px) {
+    .o-team-slider__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .o-team-slider__controls {
+        /* En mobile ocultamos flechas, el dedo es mejor */
+        display: none;
+    }
+
+    .o-team-slider__item {
+        /* Mostramos el 85% para que se vea que hay más a la derecha */
+        width: 85%;
+    }
+
+    .o-team-slider__track {
+        padding-right: 20px;
+        /* Espacio final */
+    }
+}

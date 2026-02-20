@@ -1,0 +1,99 @@
+.o-gallery {
+    padding: 120px 0 60px;
+    /* Padding top alto para compensar el Header fijo */
+    background-color: #FFF3EF;
+    /* Tu color de fondo claro */
+}
+
+.o-gallery__header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.o-gallery__main-title {
+    font-size: var(--font-size-h1);
+    color: var(--color-primary);
+    /* Título Rojo */
+    margin-bottom: 1rem;
+}
+
+/* GRILLA */
+.o-gallery__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    /* Sin espacio entre fotos, estilo Awwwards */
+}
+
+@media (min-width: 1024px) {
+    .o-gallery__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ITEM */
+.o-gallery__item {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    /* Cuadrado perfecto */
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.o-gallery__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* HOVER EFFECT */
+.o-gallery__item:hover .o-gallery__image {
+    transform: scale(1.1);
+    /* Zoom in */
+}
+
+.o-gallery__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(221, 32, 37, 0.9);
+    /* Rojo Innograf con transparencia */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    color: white;
+
+    /* Animación de entrada */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.o-gallery__item:hover .o-gallery__overlay {
+    opacity: 1;
+}
+
+/* Textos dentro del overlay */
+.o-gallery__title {
+    color: white;
+    transform: translateY(20px);
+    transition: transform 0.4s ease 0.1s;
+}
+
+.o-gallery__item:hover .o-gallery__title {
+    transform: translateY(0);
+}
+
+.o-gallery__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}

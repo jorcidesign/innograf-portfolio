@@ -1,0 +1,175 @@
+/* --- CONTENEDOR PRINCIPAL --- */
+.a-team-card {
+    position: relative;
+    width: 100%;
+    /* Ratio vertical elegante (estilo retrato) */
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    /* Fix para bordes en safari durante transiciones */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+}
+
+/* --- IMAGEN --- */
+.a-team-card__image-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.a-team-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    /* ESTADO INICIAL: Blanco y Negro + Escala Normal */
+    filter: grayscale(100%);
+    transform: scale(1);
+
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        filter 0.6s ease;
+}
+
+/* --- OVERLAY (CAPA ROJA) --- */
+.a-team-card__overlay {
+    position: absolute;
+    inset: 0;
+
+    /* Rojo Corporativo con Transparencia */
+    background-color: rgba(221, 32, 37, 0.9);
+    /* #DD2025 al 90% */
+
+    /* Inicialmente Invisible */
+    opacity: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+
+    transition: opacity 0.4s ease;
+}
+
+/* --- CONTENIDO DE TEXTO --- */
+.a-team-card__content {
+    /* Inicialmente desplazado hacia abajo */
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+    color: #fff;
+    width: 100%;
+}
+
+.a-team-card__name {
+    font-family: var(--font-family-headings, serif);
+    font-size: 1.75rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem 0;
+}
+
+.a-team-card__role {
+    display: block;
+    font-family: var(--font-family-body, sans-serif);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+.a-team-card__divider {
+    width: 0px;
+    /* Empieza invisible */
+    height: 1px;
+    background-color: #fff;
+    margin: 1.5rem auto;
+    transition: width 0.5s ease 0.1s;
+    /* Pequeño delay */
+}
+
+.a-team-card__contact {
+    display: inline-block;
+    font-family: var(--font-family-body);
+    font-size: 0.8rem;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.a-team-card__contact:hover {
+    background-color: #fff;
+    color: var(--color-primary);
+    border-color: #fff;
+}
+
+/* --- HOVER STATE (DESKTOP) --- */
+.a-team-card:hover .a-team-card__overlay {
+    opacity: 1;
+}
+
+.a-team-card:hover .a-team-card__image {
+    transform: scale(1.1);
+    /* Zoom suave */
+    filter: grayscale(0%);
+    /* Vuelve el color */
+}
+
+.a-team-card:hover .a-team-card__content {
+    transform: translateY(0);
+}
+
+.a-team-card:hover .a-team-card__divider {
+    width: 40px;
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .a-team-card__overlay {
+        /* En mobile, podemos hacer que el overlay sea un gradiente 
+           permanente abajo para que siempre se lea el nombre, 
+           O mantener el tap para ver (hover behavior en touch) */
+
+        /* Opción A: Mantener comportamiento Tap (más limpio) */
+        padding: 1rem;
+    }
+
+    .a-team-card__name {
+        font-size: 1.4rem;
+    }
+
+    .a-team-card__role {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    /* Ajuste para que el usuario sepa que es interactivo */
+    .a-team-card::after {
+        content: '+';
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+        background: #fff;
+        color: var(--color-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+        pointer-events: none;
+    }
+
+    /* Al hacer tap (hover), ocultamos el indicador + */
+    .a-team-card:hover::after {
+        opacity: 0;
+    }
+}

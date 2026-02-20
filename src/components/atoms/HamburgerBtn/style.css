@@ -1,0 +1,107 @@
+.a-hamburger {
+    display: inline-block;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* El cuadradito sutil del diseño */
+    margin: 0;
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    transition: border-color 0.3s linear;
+    position: relative;
+    z-index: 1001;
+    /* Siempre encima del menú */
+    pointer-events: auto;
+    /* Asegura que sea clickeable */
+}
+
+.a-hamburger:hover {
+    border-color: #fff;
+}
+
+.a-hamburger__box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Las líneas base */
+.a-hamburger__inner {
+    display: block;
+    top: 50%;
+    margin-top: -2px;
+    /* Mitad de la altura para centrar */
+}
+
+.a-hamburger__inner,
+.a-hamburger__inner::before,
+.a-hamburger__inner::after {
+    width: 24px;
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+    transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1), background-color 0s linear;
+}
+
+/* Creamos las líneas usando pseudo-elementos para mejor performance */
+.a-hamburger__inner::before,
+.a-hamburger__inner::after {
+    content: "";
+    display: block;
+}
+
+/* Estado Inicial (Hamburguesa = ) */
+.a-hamburger__inner {
+    background-color: transparent;
+    /* Ocultamos la linea central imaginaria */
+}
+
+.a-hamburger__inner::before {
+    top: -6px;
+    /* Línea de arriba */
+    transition: top 0.1s ease-in 0.25s, opacity 0.1s ease-in;
+}
+
+.a-hamburger__inner::after {
+    top: 6px;
+    /* Línea de abajo */
+    transition: bottom 0.1s ease-in 0.25s, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+/* Estado Activo (La X) */
+.a-hamburger--active {
+    border-color: transparent;
+    /* Quitamos borde si el diseño lo pide en modo X */
+}
+
+.a-hamburger--active .a-hamburger__inner::before {
+    top: 0;
+    transform: rotate(45deg);
+    transition: top 0.1s ease-out, transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
+}
+
+.a-hamburger--active .a-hamburger__inner::after {
+    top: 0;
+    transform: rotate(-45deg);
+    transition: bottom 0.1s ease-out, transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
+}
+
+/* TEMA DARK: Cuando el fondo de la web es claro, el botón debe ser negro */
+.a-hamburger--dark {
+    border-color: rgba(0, 0, 0, 0.4);
+}
+
+.a-hamburger--dark:hover {
+    border-color: #000;
+}
+
+.a-hamburger--dark .a-hamburger__inner,
+.a-hamburger--dark .a-hamburger__inner::before,
+.a-hamburger--dark .a-hamburger__inner::after {
+    background-color: #000;
+    /* Líneas negras */
+}

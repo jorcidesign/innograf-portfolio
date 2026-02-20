@@ -1,0 +1,122 @@
+/* 1. VARIABLES (Tu paleta y sistema) */
+:root {
+    /* Color */
+    --color-primary: #DD2025;
+    --color-background-light: #FFF3EF;
+    --color-text-main: #252525;
+    --color-accent-secondary: #F0A91E;
+
+    /* Grid (Mobile First) */
+    --grid-columns: 6;
+    --grid-margin: 20px;
+    --grid-gutter: 20px;
+
+    /* Tipografía */
+    /* NOTA: Ajustado al nombre real de Google Fonts */
+    --font-family-headings: 'Noto Sans', sans-serif;
+    --font-family-body: 'Noto Serif', serif;
+
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+
+    /* Escala Fluida (Clamp) */
+    --font-size-h1: clamp(3.5rem, 1.59rem + 8.14vw, 5.75rem);
+    --font-size-h2: clamp(2.5rem, 1.55rem + 4.07vw, 4rem);
+    --font-size-h3: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+    --font-size-h4: clamp(1.25rem, 1.06rem + 0.82vw, 1.5rem);
+    --font-size-p: clamp(0.9rem, 0.85rem + 0.2vw, 1rem);
+    --font-size-caption: 0.875rem;
+}
+
+/* 2. RESET & BASE */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-p);
+    color: var(--color-text-main);
+    background-color: var(--color-background-light);
+    line-height: 1.7;
+    overflow-x: hidden;
+    /* Evita scroll lateral accidental */
+}
+
+/* 3. TIPOGRAFÍA GLOBAL */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-family-headings);
+    font-variation-settings: 'wdth' 62.5;
+    /* Activa el Condensed */
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* 4. UTILITIES (Layout Global) */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding-left: var(--grid-margin);
+    padding-right: var(--grid-margin);
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    :root {
+        --grid-columns: 12;
+        --grid-margin: 32px;
+        --grid-gutter: 24px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    :root {
+        --grid-columns: 16;
+        --grid-margin: 60px;
+    }
+
+    .container {
+        max-width: 1440px;
+    }
+}
+
+/* 5. TRANSITION OVERLAY */
+@import "./transitions.css";
+
+/* =========================================
+   6. OCULTAR BARRA DE SCROLL GLOBAL
+   ========================================= */
+
+/* Para Chrome, Safari y Opera */
+::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    background: transparent;
+}
+
+/* Para Firefox y IE/Edge */
+html,
+body {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE y Edge anterior */
+}

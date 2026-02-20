@@ -1,0 +1,252 @@
+/* Bloque Principal */
+.o-hero {
+    /* Ocupar toda la altura visible menos un poco (header) */
+    min-height: 100vh;
+    width: 100%;
+
+    /* Fondo con gradiente sobre la imagen */
+    background:
+        linear-gradient(rgba(221, 32, 37, 0.85), rgba(221, 32, 37, 0.85)),
+        url('../../../assets/images/hero-background.png');
+    /* Ajusta la ruta si es necesario */
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+    /* Texto blanco por defecto en el hero */
+
+    /* Centrado vertical del contenido */
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    /* Espacio para el navbar flotante */
+    padding-bottom: 40px;
+}
+
+/* Grilla del Hero */
+.o-hero__grid {
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Elemento: Tarjeta (Card) */
+.o-hero__card {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    min-height: 300px;
+    /* Altura mínima en mobile */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.4s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Sutil fondo */
+    backdrop-filter: blur(5px);
+    /* Efecto vidrio moderno */
+    cursor: pointer;
+}
+
+/* Modificadores de Tarjeta */
+.o-hero__card--visual {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.5);
+    /* La tarjeta del medio suele ser más "limpia" */
+}
+
+.o-hero__card--action:hover {
+    background-color: var(--color-background-light);
+    color: var(--color-primary);
+    /* Invertimos colores al hover */
+    transform: translateY(-5px);
+}
+
+/* Tipografía Interna */
+.o-hero__title {
+    font-size: var(--font-size-h2);
+    margin-bottom: 1rem;
+    color: inherit;
+}
+
+.o-hero__text {
+    font-size: var(--font-size-p);
+    max-width: 30ch;
+    /* Limita el ancho del texto para que sea legible */
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.o-hero__icon {
+    margin-top: auto;
+    /* Empuja el ícono hacia abajo */
+    transition: transform 0.3s ease;
+}
+
+.o-hero__card:hover .o-hero__icon {
+    transform: rotate(90deg);
+}
+
+/* --- MEDIA QUERIES (Desktop) --- */
+@media (min-width: 1024px) {
+    .o-hero__grid {
+        grid-template-columns: 1fr 1.2fr 1fr;
+        /* Centro un poco más ancho */
+        height: 70vh;
+        /* Altura fija en desktop para alineación perfecta */
+    }
+
+    .o-hero__card {
+        height: 100%;
+        /* Llenar la altura de la grilla */
+    }
+
+    /* Animación de entrada "Awwwards" */
+    .o-hero__card {
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .o-hero__card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .o-hero__card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .o-hero__card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- FIX PARA ENLACES --- */
+/* Forzamos a que el <a> actúe igual que el article y herede el texto blanco */
+a.o-hero__card {
+    text-decoration: none;
+    color: white;
+}
+
+/* Opcional: Si quieres que la tarjeta del centro (visual) NO tenga borde
+   para que se vea más limpia como en tu diseño de referencia */
+.o-hero__card--visual {
+    background-color: transparent;
+    border-color: transparent;
+    /* Quita el borde si lo deseas */
+}
+
+/* Modificadores de Tarjeta */
+.o-hero__card--visual {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.5);
+    /* La tarjeta del medio suele ser más "limpia" */
+}
+
+/* --- FIX MÁXIMA ESPECIFICIDAD PARA EL HOVER --- */
+/* Aseguramos que el fondo y el comportamiento de la tarjeta cambien */
+a.o-hero__card.o-hero__card--action:hover,
+.o-hero__card--action:hover {
+    background-color: var(--color-background-light, #ffffff);
+    color: var(--color-primary, #DD2025);
+    transform: translateY(-5px);
+}
+
+/* Forzamos obligatoriamente a que los textos internos tomen el color principal al hacer hover */
+a.o-hero__card.o-hero__card--action:hover .o-hero__title,
+a.o-hero__card.o-hero__card--action:hover .o-hero__text,
+a.o-hero__card.o-hero__card--action:hover .o-hero__icon {
+    color: var(--color-primary, #DD2025);
+}
+
+/* Tipografía Interna */
+.o-hero__title {
+    font-size: var(--font-size-h2);
+    margin-bottom: 1rem;
+    color: inherit;
+}
+
+.o-hero__text {
+    font-size: var(--font-size-p);
+    max-width: 30ch;
+    /* Limita el ancho del texto para que sea legible */
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.o-hero__icon {
+    margin-top: auto;
+    /* Empuja el ícono hacia abajo */
+    transition: transform 0.3s ease;
+}
+
+/* Añadimos !important por si el JavaScript está intentando bloquear la rotación */
+.o-hero__card:hover .o-hero__icon {
+    transform: rotate(90deg) !important;
+}
+
+/* --- MEDIA QUERIES (Desktop) --- */
+@media (min-width: 1024px) {
+    .o-hero__grid {
+        grid-template-columns: 1fr 1.2fr 1fr;
+        /* Centro un poco más ancho */
+        height: 70vh;
+        /* Altura fija en desktop para alineación perfecta */
+    }
+
+    .o-hero__card {
+        height: 100%;
+        /* Llenar la altura de la grilla */
+    }
+
+    /* Animación de entrada "Awwwards" */
+    .o-hero__card {
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .o-hero__card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .o-hero__card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .o-hero__card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- FIX PARA ENLACES --- */
+/* Forzamos a que el <a> actúe igual que el article y herede el texto blanco inicialmente */
+a.o-hero__card {
+    text-decoration: none;
+    color: white;
+}

@@ -1,0 +1,195 @@
+/* --- HERO SECTION --- */
+.p-project-detail__hero {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    /* Alto impactante */
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Efecto Parallax simple */
+    display: flex;
+    align-items: flex-end;
+    /* Texto abajo */
+    color: #fff;
+    padding-bottom: 4rem;
+}
+
+.p-project-detail__hero-overlay {
+    position: absolute;
+    inset: 0;
+    /* Gradiente para que el texto se lea siempre */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+.p-project-detail__hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.p-project-detail__category {
+    font-family: var(--font-family-body);
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.p-project-detail__title {
+    font-family: var(--font-family-headings);
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* --- INFO BAR --- */
+.p-project-detail__info-bar {
+    background-color: #f4f4f4;
+    padding: 3rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.p-project-detail__info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.p-project-detail__info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.p-project-detail__info-item .label {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.p-project-detail__info-item .value {
+    font-family: var(--font-family-headings);
+    font-size: 1.25rem;
+    color: #1a1a1a;
+}
+
+.value-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.value-list li {
+    font-family: var(--font-family-headings);
+    font-size: 1.1rem;
+    color: #1a1a1a;
+    margin-bottom: 0.25rem;
+}
+
+/* --- STORYTELLING (Challenge & Solution) --- */
+.p-project-detail__story {
+    padding: 5rem 0;
+    background-color: #fff;
+}
+
+.p-project-detail__story-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+}
+
+.p-project-detail__story-col h3 {
+    font-family: var(--font-family-body);
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.p-project-detail__story-col p {
+    font-family: var(--font-family-body);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #444;
+}
+
+/* --- GALLERY --- */
+.p-project-detail__gallery {
+    padding-bottom: 6rem;
+}
+
+.p-project-detail__gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.p-project-detail__gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Efecto sutil al hover */
+    transition: filter 0.3s ease;
+}
+
+.p-project-detail__gallery-item img:hover {
+    filter: brightness(0.95);
+}
+
+/* --- NEXT PROJECT --- */
+.p-project-detail__next {
+    padding: 6rem 0 8rem 0;
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+}
+
+.p-project-detail__next .subtitle {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    opacity: 0.6;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.p-project-detail__next .next-title {
+    font-family: var(--font-family-headings);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-transform: uppercase;
+    margin: 0;
+    color: #fff;
+}
+
+/* --- RESPONSIVE DESKTOP --- */
+@media (min-width: 1024px) {
+    .p-project-detail__info-grid {
+        grid-template-columns: 1fr 1fr 2fr;
+        /* 3 Columnas */
+    }
+
+    .p-project-detail__story-grid {
+        grid-template-columns: 1fr 1fr;
+        /* 2 Columnas */
+        gap: 6rem;
+    }
+
+    .p-project-detail__gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        /* 2 Columnas */
+        gap: 3rem;
+    }
+
+    /* Hacemos que la segunda imagen ocupe todo el ancho para romper la grilla (opcional) */
+    .p-project-detail__gallery-item:nth-child(3n) {
+        grid-column: span 2;
+    }
+}
